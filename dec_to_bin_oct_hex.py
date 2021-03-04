@@ -30,10 +30,10 @@ def compliment_form(num):
     global compliment
     compliment = ''
     num = '0' + num  # here zero is for sign representation or extra bit  eg: -15
-    num = num[::-1]
     first_time = 0
-    for i in range(len(num)):
-
+    i = -1
+    length = -len(num)
+    while i >= length:
         if first_time == 1:
             if num[i] == '1':
                 compliment = compliment + '0'
@@ -41,13 +41,16 @@ def compliment_form(num):
                 compliment = compliment + '1'
             elif num[i] == '.':
                 compliment = compliment + '.'
-        if num[i] == '1'and first_time == 0:
+        if num[i] == '1' and first_time == 0:
             first_time = 1
             compliment = compliment + num[i]
         elif first_time == 0:
             compliment = compliment + num[i]
-    compliment = compliment[::-1]
-    return compliment
+        i -= 1
+
+    length = length - 1
+    return compliment[-1:length:-1]
+
 
 def bin_2_oct():
     octal_integer_part = oct(integer_part)
