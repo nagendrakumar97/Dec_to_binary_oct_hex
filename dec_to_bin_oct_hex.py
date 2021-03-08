@@ -27,29 +27,26 @@ def conversion_of_fraction(num, base):
 
 # REPRESENTING NEGATIVE NUMBER IN 2'S COMPLIMENT FORM
 def compliment_form(num):
-    global compliment
-    compliment = ''
     num = '0' + num  # here zero is for sign representation or extra bit  eg: -15
+    num = list(num)
     first_time = 0
     i = -1
     length = -len(num)
     while i >= length:
         if first_time == 1:
             if num[i] == '1':
-                compliment = compliment + '0'
+                num[i] = '0'
             elif num[i] == '0':
-                compliment = compliment + '1'
+                num[i] = '1'
             elif num[i] == '.':
-                compliment = compliment + '.'
+                num[i] =  '.'
         if num[i] == '1' and first_time == 0:
             first_time = 1
-            compliment = compliment + num[i]
-        elif first_time == 0:
-            compliment = compliment + num[i]
+    
         i -= 1
-
     length = length - 1
-    return compliment[-1:length:-1]
+    # print(''.join(map(str, num)), type(''.join(map(str, num))))
+    return ''.join(map(str, num))
 
 
 def bin_2_oct():
@@ -64,7 +61,7 @@ def bin_2_hex():
 
 while True:
     try:
-        number = input("DECIMAL TO BINARY, OCTAL AND HEXA DECIMAL\n ENTER A DECIMAL NUMBER:")
+        number = input("\n\nDECIMAL TO BINARY, OCTAL AND HEXA DECIMAL\n ENTER A DECIMAL NUMBER:")
         number = float(number)    # by default number is global variable(object)
         print("GIVEN NUMBER IS {0}\n".format(number))
 
